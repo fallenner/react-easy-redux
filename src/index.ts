@@ -1,4 +1,4 @@
-import { applyMiddleware, createStore, combineReducers } from 'redux';
+import { applyMiddleware, createStore, combineReducers, Store } from 'redux';
 import createSagaMiddleware from 'redux-saga';
 import createPromiseMiddleware from './middleware/promise';
 import loadingPlugin, { ILoading } from './plugins/loading';
@@ -21,7 +21,7 @@ export const connect = easyConnect;
  * 初始化的时候调用此方法获取provider需要的store
  * @param models
  */
-export const getStore = <T>(models: Array<IModel<any>>) => {
+export const getStore = <T>(models: Array<IModel<any>>): Store => {
     const plugins = [loadingPlugin];
 
     const rootSaga = getSagas.bind(
