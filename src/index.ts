@@ -12,7 +12,16 @@ export interface IRootState {
 
 export { Provider } from 'react-redux';
 
-export const getStore = (models: Array<IModel<any>>) => {
+/**
+ * 把组件关联到redux
+ */
+export const connect = easyConnect;
+
+/**
+ * 初始化的时候调用此方法获取provider需要的store
+ * @param models
+ */
+export const getStore = <T>(models: Array<IModel<any>>) => {
     const plugins = [loadingPlugin];
 
     const rootSaga = getSagas.bind(
@@ -20,22 +29,16 @@ export const getStore = (models: Array<IModel<any>>) => {
         models,
         plugins.map(item => item.onEffect)
     );
-
     const rootReducers = getReducers(models, plugins);
 
     const sagaMiddleware = createSagaMiddleware();
 
     const promiseMiddleware = createPromiseMiddleware(models);
-
-    sagaMiddleware.run(rootSaga as any);
-
-    return createStore(
-        combineReducers<IRootState>(rootReducers),
+    const store = createStore(
+        combineReducers<T>(rootReducers),
         applyMiddleware(promiseMiddleware, sagaMiddleware)
     );
-};
 
-/**
- * 把组件关联到redux
- */
-export const connect = easyConnect;
+    sagaMiddleware.run(rootSaga as any);
+    return store;
+};

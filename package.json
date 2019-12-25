@@ -2,7 +2,8 @@
     "name": "react-easy-redux",
     "version": "1.0.0",
     "description": "一个将redux redux-saga做了简易封装的轮子",
-    "main": "index.js",
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
@@ -13,11 +14,11 @@
     "keywords": [
         "redux",
         "redux-saga",
-        "dvajs",
+        "react",
         "react-native"
     ],
     "author": "dzq",
-    "license": "ISC",
+    "license": "MIT",
     "bugs": {
         "url": "https://github.com/fallenner/react-easy-redux/issues"
     },
@@ -30,8 +31,6 @@
     "devDependencies": {
         "@types/react-redux": "^7.1.5",
         "tslint": "^5.20.1",
-        "tslint-react": "^4.1.0",
-        "tslint-react-hooks": "^2.2.1",
         "typescript": "^3.7.4"
     }
 }
