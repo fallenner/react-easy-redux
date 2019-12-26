@@ -17,7 +17,6 @@ npm i react-easy-redux --save
 ### Basic Usage
 
 ```tsx
-import { Modal } from 'react-native';
 import { Provider, getStore,connect } from 'react-easy-redux';
 
 const model = {

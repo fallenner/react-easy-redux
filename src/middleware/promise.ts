@@ -1,4 +1,5 @@
 import { Middleware } from 'redux';
+import { IModel } from '../types';
 
 const createPromiseMiddleware = (models: Array<IModel<any>>): Middleware => {
     const middleware: Middleware = () => next => action => {

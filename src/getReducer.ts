@@ -1,3 +1,5 @@
+import { IModel, IStringMap } from './types';
+
 /**
  * 构建models
  * @param models models

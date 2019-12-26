@@ -30,7 +30,7 @@ export interface IDisPatchProps {
  * 导出redux组件
  */
 export default (
-    WrappedComponent: React.ComponentType<IDisPatchProps>,
+    WrappedComponent: React.ComponentType<any>,
     mapStateToProps?: any
 ) => {
     return connect(mapStateToProps, mapDispatchToProps)(WrappedComponent);

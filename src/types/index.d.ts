@@ -1,4 +1,9 @@
 import { Store } from 'redux';
+import { Effect } from 'redux-saga/effects';
+
+export interface IStringMap {
+    [propName: string]: any;
+}
 
 interface IEffectPut {
     type: string;
@@ -24,23 +29,43 @@ interface IReducersMap<T> {
 }
 
 export interface IModel<S> {
+    /** 在reducer里的模块名 */
     namespace: string;
+
+    /** 在reducer里的模块名 */
     effects?: IEffectsMap;
+
+    /** 对应redux-saga里的effects方法 */
     state?: S;
+
+    /** 对应的reducer模块里的方法 */
     reducers?: IReducersMap<S>;
 }
 
+/** 自定义组件 */
+export interface IPlugin<S> {
+    /** 在reducer里的模块名 */
+    namespace: string;
+    /** 对应的reducer方法 */
+    reducer: (state: S, action: any) => S;
+
+    /** 对应的effect拦截器 */
+    onEffect: (
+        effect: any,
+        sagaEffects: Effect,
+        type: string
+    ) => (...args: any[]) => Generator<any, void, unknown>;
+}
+
 /** 初始化easy-redux的时候调用的方法 */
-declare const getStore: <T>(models: Array<IModel<any>>) => Store;
+export const getStore: <T>(
+    models: Array<IModel<any>>,
+    plugins?: Array<IPlugin<any>>
+) => Store;
 
 export interface IEffectPayload {
     /** 是否自己捕捉异常 */
     catchSelf?: boolean;
-    // /** 是否展示加载loading,暂不支持 */
-    // showLoading?: boolean;
-    // /** loading文字，暂不支持 */
-    // loadingText?: string;
-
     [propName: string]: any;
 }
 

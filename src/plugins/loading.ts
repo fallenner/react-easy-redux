@@ -1,3 +1,5 @@
+import { IPlugin } from '../types';
+
 export const SHOW = '@@LOADING/SHOW';
 export const HIDE = '@@LOADING/HIDE';
 
@@ -35,4 +37,6 @@ const onEffect = (effect: any, { put }: any, type: string) => {
     };
 };
 
-export default { namespace, reducer, onEffect };
+const LoadingPlugin: IPlugin<ILoading> = { namespace, reducer, onEffect };
+
+export default LoadingPlugin;

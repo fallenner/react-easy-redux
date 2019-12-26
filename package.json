@@ -1,9 +1,9 @@
 {
     "name": "react-easy-redux",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "description": "一个将redux redux-saga做了简易封装的轮子",
     "main": "dist/index.js",
-    "types": "src/index.d.ts",
+    "types": "src/types/index.d.ts",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },

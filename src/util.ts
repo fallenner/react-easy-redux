@@ -1,3 +1,5 @@
+import { IModel } from './types';
+
 /**
  * 格式化type
  * @param model model

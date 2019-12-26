@@ -1,4 +1,5 @@
 import * as sagaEffects from 'redux-saga/effects';
+import { IModel } from './types';
 import { prefixType } from './util';
 
 /**

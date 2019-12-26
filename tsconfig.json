@@ -4,10 +4,10 @@
         "module": "commonjs",
         "lib": ["es5", "es6"],
         "target": "es5",
-        "sourceMap": true,
         "outDir": "./dist",
         "skipLibCheck": true,
-        "baseUrl": "."
+        "baseUrl": ".",
+        "jsx": "react"
     },
     "include": ["src/**/*"]
 }
