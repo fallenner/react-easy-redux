@@ -1,10 +1,26 @@
 # react-easy-redux
 
-一个对 redux、redux-saga 做了简易封装的插件。可用直接用于 React 、React-Native。
+English | [中文版](./README_CN.md)
 
-## 背景
+A plugin that simply encapsulates redux and redux-saga. It can be used directly for React 、React-Native
 
-因为直接使用 redux + redux-saga 对新手很不友好。 特别是 redux-saga ,很多新手对其一头雾水。受 [dva.js](https://dvajs.com/) 启发（感觉 dva 太庞大，特别是运用在 react-native 太庞大,影响性能），造了这个插件....
+## Notice
+
+<font  size=4>This package depend on redux、redux-saga 、react-redux，So you no need install them additionally !!!!</font>
+
+## Feature
+
+1. Easier integration of redux, redux-saga. if you install this package,You don't need to install redux、redux-saga、react-redux additionally.
+
+2. Automatically define a loading variable in the redux state when you trigger a effect function. Support for custom Plugin.
+
+## Background
+
+redux + redux-saga directly is not friendly to novices. Especially redux-saga, many novices are confused about it.
+
+It inspired by [dva.js](https://dvajs.com/), Why not use dva.js directly ?
+
+Because it is too large, contains many features that are not needed for small and medium projects, and cannot be used directly in React-Native.
 
 ## Getting Started
 
@@ -45,7 +61,7 @@ const model = {
     }
 };
 
-// 初始化store
+// init store
 const store = getStore([model]);
 
 
@@ -60,7 +76,7 @@ export default class App extends React.Component {
     }
 }
 
-// 展示组件里使用
+// connect Component
 const Test = (props) => {
     return (
         <div>{props.msg}</div>
@@ -79,16 +95,16 @@ export const ConnectTest = connect(Test,mapStateToProps);
 
 #### Model
 
-| propName  |  type  | required |                              desc                               |
-| :-------: | :----: | :------: | :-------------------------------------------------------------: |
-| namespace | string |   true   |                  最终注入到 reducer 里的模块名                  |
-|   state   | object |   true   |                  注入的 reducer 模块里的 state                  |
-|  effects  | object |  false   | 注入到 redux-saga 里的 effects，可以使用 call、put、select 方法 |
-| reducers  | object |  false   |              变更该模块 state 的值的 reducer 方法               |
+| propName  |  type  | required |                                            desc                                            |
+| :-------: | :----: | :------: | :----------------------------------------------------------------------------------------: |
+| namespace | string |   true   |            The name of the module that was eventually injected into the reducer            |
+|   state   | object |   true   |                    State injected into the corresponding reducer module                    |
+|  effects  | object |  false   | Effects injected into redux-saga, you can use effects methods like call、 put and so on... |
+| reducers  | object |  false   |                            Reducer calculation method in redux                             |
 
 #### connect
 
-将 react 组件注入到 redux 中的方法，在 react-redux 的基础上简化的，会自动注入 dispatch 方法到组件里。
+The method for injecting react components into redux is simplified on the basis of react-redux, and it automatically injects dispatch methods into components.
 
 ```tsx
 const Test = props => {
@@ -104,7 +120,7 @@ export const ConnectTest = connect(Test, mapStateToProps);
 
 #### dispatch
 
-connect 后的组件会有的方法，用于触发对应的 effects 方法。返回一个 Promise，触发的 effects 方法在使用前会触发对应的 loading = true，执行完后 loading = false
+The component after connect will have methods to trigger the corresponding effects methods. Returns a Promise. The triggered effects method will trigger the corresponding loading = true before use, and loading = false after execution.
 
 ```javascript
 this.props.dispatch({
@@ -117,15 +133,15 @@ this.props.dispatch({
 });
 ```
 
-dispatch 有一些参数用于满足一些灵活的需求，参数如下:
+Parameters of the dispatch method
 
-|   name    |  type   | required |                                                  desc                                                  |
-| :-------: | :-----: | :------- | :----------------------------------------------------------------------------------------------------: |
-| catchSelf | boolean | false    | 默认值为 false，如果设为 true，触发的 effect 方法的异常会抛出，需要 dispatch 返回的 promise 自己 catch |
+|   name    |  type   | required |                                                                          desc                                                                           |
+| :-------: | :-----: | :------- | :-----------------------------------------------------------------------------------------------------------------------------------------------------: |
+| catchSelf | boolean | false    | Defaults false，If set to true, the exception of the triggered effect method will be thrown, and the promise returned by dispatch needs to catch itself |
 
 #### loading
 
-自带 loading 插件，每次触发的 effect 方法，会自动在 redux 的 state 生成一个 loading 变量，用于在异步请求加载 Loading。
+Comes with a loading plugin. Each time the effect method is triggered, a loading variable is automatically generated in the state of redux for loading in exec asynchronous method.
 
 ```jsx
 const Test = props => {
@@ -147,11 +163,11 @@ export const ConnectTest = connect(Test, mapStateToProps);
 
 ## Next
 
-1. 支持自定义插件,支持自定义 loading 组件，在触发 effects 方法，通过参数直接加载 loading 组件效果。
+No
 
 ## Other
 
-第一次发布 npm 包，肯定有诸多不足，欢迎 PR。
+Welcome PR!!!! The first release of the npm package must have many shortcomings.
 
 ## License
 

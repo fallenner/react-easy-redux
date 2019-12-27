@@ -8,10 +8,6 @@ const mapDispatchToProps = (dispatch: any) => ({
 export interface IEffectPayload {
     /** 是否自己捕捉异常 */
     catchSelf?: boolean;
-    /** 是否展示加载loading */
-    showLoading?: boolean;
-    /** loading文字 */
-    loadingText?: string;
 
     [propName: string]: any;
 }
