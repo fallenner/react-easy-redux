@@ -82,4 +82,4 @@ export { Provider } from 'react-redux';
 export const connect: (
     WrappedComponent: React.ComponentType<any>,
     mapStateToProps?: any
-) => React.ComponentType;
+) => React.ComponentType<any>;
