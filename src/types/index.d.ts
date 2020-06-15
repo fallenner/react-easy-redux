@@ -81,5 +81,22 @@ export { Provider } from 'react-redux';
 /** 把组件连接到easy-redux */
 export const connect: (
     WrappedComponent: React.ComponentType<any>,
-    mapStateToProps?: any
+    mapStateToProps?: any,
+    mergeProps?:
+        | ((
+              stateProps: any,
+              dispatchProps: any,
+              ownProps: any
+          ) => { [propsName: string]: any })
+        | null,
+    options?: {
+        context?: Object;
+        pure?: boolean;
+        areStatesEqual?: Function;
+        areOwnPropsEqual?: Function;
+        areStatePropsEqual?: Function;
+        areMergedPropsEqual?: Function;
+        /** 需要拿到包裹组件的ref设置为true */
+        forwardRef?: boolean;
+    }
 ) => React.ComponentType<any>;

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 const mapDispatchToProps = (dispatch: any) => ({
-    dispatch
+    dispatch,
 });
 
 export interface IEffectPayload {
@@ -27,7 +27,14 @@ export interface IDisPatchProps {
  */
 export default (
     WrappedComponent: React.ComponentType<any>,
-    mapStateToProps?: any
+    mapStateToProps?: any,
+    mergeProps?: any,
+    options?: any
 ) => {
-    return connect(mapStateToProps, mapDispatchToProps)(WrappedComponent);
+    return connect(
+        mapStateToProps,
+        mapDispatchToProps,
+        mergeProps,
+        options
+    )(WrappedComponent);
 };
